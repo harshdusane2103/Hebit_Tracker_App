@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hebit_tracker_app/Datebase/habit_databash.dart';
 import 'package:hebit_tracker_app/Provider/provider.dart';
+import 'package:hebit_tracker_app/View/Home.dart';
 import 'package:hebit_tracker_app/View/Splash.dart';
 import 'package:provider/provider.dart';
 
@@ -15,12 +17,16 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context)=>ThemeProvider()),
+        ChangeNotifierProvider(create: (context)=>HabitDatabase()),
       ],
           builder:(context,child) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: Provider.of<ThemeProvider>(context).themeData,
         routes: {
           '/':(context)=>SplashScreen(),
+          '/home':(context)=>HomeScreen(),
         },
+
       ),
     );
   }
